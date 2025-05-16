@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hot by F&I - Jajanan Pedas Menggoda</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Poppins for playful, readable look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;400&display=swap" rel="stylesheet">
+   
+</head>
+<body>
+    <!-- ====== NAVBAR ====== -->
+    <header class="navbar">
+        <div class="brand" onclick="window.scrollTo({top:0,behavior:'smooth'})">Hot by F&amp;I</div>
+        <nav>
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About Jajanan</a>
+            <a href="#produk">Produk</a>
+            <a href="#testimoni">Testimoni</a>
+            <a href="#order">Order</a>
+        </nav>
+        <button class="toggle-dark" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
+            <span id="dark-icon">🌙</span>
+        </button>
+        <div class="hamburger" tabindex="0" aria-label="Buka menu" onclick="toggleMenu()" onkeypress="if(event.key==='Enter'){toggleMenu()}">
+            <span></span><span></span><span></span>
+        </div>
+    </header>
+
+    <!-- ====== HERO ====== -->
+    <section class="hero" id="home">
+        <h1>🔥 Hot by F&amp;I 🔥</h1>
+        <p>Jajanan pedas kekinian yang bikin nagih, <b>berani coba?</b></p>
+        <img src="https://img.icons8.com/color/144/000000/hot-pepper.png" alt="Hot by F&I Logo">
+    </section>
+
+    <!-- ====== ABOUT ====== -->
+    <section id="about" class="animate">
+        <h2>About Jajanan</h2>
+        <div class="about-desc">
+            <b>Hot by F&amp;I</b> lahir dari kecintaan kami pada jajanan pedas yang bikin lidah menari! Kami percaya, hidup tanpa pedas itu hambar. Mulai dari kerupuk Rafael yang kriuk dan pedasnya nendang, sampai seblak campur yang bikin keringat bercucuran, semua kami racik dengan cinta dan cabai pilihan. Siap-siap jatuh cinta pada gigitan pertama!
+        </div>
+        <div class="about-products">
+            <div class="about-product">
+                <h3>Kerupuk Rafael</h3>
+                <p>Kriuk, gurih, dan pedasnya <b>nendang</b>! Cocok buat ngemil, nonton, atau galau. Sekali coba, pasti pengen lagi!</p>
+            </div>
+            <div class="about-product">
+                <h3>Seblak Campur</h3>
+                <p>Campuran kerupuk, makaroni, dan bumbu rahasia. Pedasnya <b>menggoda</b>, bikin keringat bercucuran dan hati bahagia!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PRODUK ====== -->
+    <section id="produk" class="animate">
+        <h2>Produk Hot by F&amp;I</h2>
+        <div class="produk-galeri" id="produkGaleri">
+            <!-- Produk akan di-generate oleh JS -->
+        </div>
+    </section>
+
+    <!-- ====== TESTIMONI ====== -->
+    <section id="testimoni" class="animate">
+        <h2>Testimoni Pelanggan</h2>
+        <div class="testimoni-list">
+            <div class="testimoni-card">
+                <img class="avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Avatar">
+                <div class="nama">Salsa, 21</div>
+                <div class="bintang">⭐⭐⭐⭐⭐</div>
+                <div class="isi">"Kerupuk Rafael-nya pedasnya mantap! Cocok buat temen nugas. Repeat order, deh!"</div>
+            </div>
+            <div class="testimoni-card">
+                <img class="avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Avatar">
+                <div class="nama">Rizky, 19</div>
+                <div class="bintang">⭐⭐⭐⭐⭐</div>
+                <div class="isi">"Seblak campurnya bikin nagih, bumbunya meresap banget. Pedasnya pas, recommended!"</div>
+            </div>
+            <div class="testimoni-card">
+                <img class="avatar" src="https://randomuser.me/api/portraits/women/65.jpg" alt="Avatar">
+                <div class="nama">Dewi, 24</div>
+                <div class="bintang">⭐⭐⭐⭐⭐</div>
+                <div class="isi">"Baru kali ini nemu jajanan pedas seenak ini. Harganya juga ramah di kantong!"</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== KERANJANG ====== -->
+    <section class="keranjang-section animate" id="keranjang">
+        <div class="keranjang-title">🛒 Keranjang Belanja</div>
+        <ul class="keranjang-list" id="keranjangList"></ul>
+        <div class="keranjang-total" id="keranjangTotal">Total: Rp0</div>
+        <button class="keranjang-btn-clear" onclick="clearCart()">Kosongkan Keranjang</button>
+    </section>
+
+    <!-- ====== FORMULIR ORDER ====== -->
+    <section class="order-form-section animate" id="order">
+        <h2>Formulir Pemesanan</h2>
+        <form class="order-form" id="orderForm" autocomplete="off">
+            <label for="nama">Nama</label>
+            <input type="text" id="nama" name="nama" required>
+            <label for="alamat">Alamat</label>
+            <input type="text" id="alamat" name="alamat" required>
+            <label for="produkOrder">Produk</label>
+            <select id="produkOrder" name="produkOrder" required>
+                <!-- Diisi oleh JS -->
+            </select>
+            <label for="jumlah">Jumlah</label>
+            <input type="number" id="jumlah" name="jumlah" min="1" value="1" required>
+            <button type="submit">Pesan Sekarang</button>
+        </form>
+    </section>
+
+    <!-- ====== WHATSAPP BUTTON ====== -->
+    <a href="https://wa.me/6281246693401?text=Halo%20Hot%20by%20F%26I%2C%20saya%20mau%20order%20jajanan%20pedas%21" class="wa-order-btn" target="_blank" title="Order via WhatsApp" aria-label="Order via WhatsApp">
+        <span>🟢</span>
+        <span style="display:none;">Order via WhatsApp</span>
+    </a>
+
+    <!-- ====== CHAT DUMMY ====== -->
+    <div class="chatdummy" id="chatdummy">
+        <div class="chatdummy-window" id="chatdummyWindow">
+            <div class="chatdummy-header"><span>🤖</span> HotBot by F&amp;I</div>
+            <div class="chatdummy-messages" id="chatdummyMessages">
+                Halo! Ada yang bisa dibantu? Pilih pertanyaan di bawah ya 👇
+            </div>
+            <div class="chatdummy-questions">
+                <button onclick="chatdummyAsk(0)">Apa produk terlaris?</button>
+                <button onclick="chatdummyAsk(1)">Apakah bisa COD?</button>
+                <button onclick="chatdummyAsk(2)">Berapa level pedasnya?</button>
+            </div>
+        </div>
+        <button class="chatdummy-toggle" id="chatdummyToggle" aria-label="Buka chat dummy">💬</button>
+    </div>
+
+    <!-- ====== FOOTER ====== -->
+    <footer>
+        <div class="footer-social">
+            <a href="https://instagram.com/minni_e5231" target="_blank" title="Instagram"><span>📸</span></a>
+            <a href="https://wa.me/6281246693401" target="_blank" title="WhatsApp"><span>🟢</span></a>
+        </div>
+        <div class="footer-lucu">
+            "Pedasnya bikin <b>move on</b> dari mantan! 🌶️"
+        </div>
+        <div style="margin-top:0.5rem;font-size:0.9rem;">&copy; 2024 Hot by F&amp;I</div>
+    </footer>
+
+    <!-- ====== JAVASCRIPT ====== -->
+    <script>
+        // =======================
+        // DATA PRODUK
+        // =======================
+        const produkList = [
+            {
+                nama: "Kerupuk Rafael",
+                harga: 12000,
+                gambar: "https://img.icons8.com/color/96/000000/crispy-fried-chicken.png",
+            },
+            {
+                nama: "Seblak Campur",
+                harga: 15000,
+                gambar: "https://img.icons8.com/color/96/000000/noodles.png",
+            },
+            {
+                nama: "Kerupuk Rafael Jumbo",
+                harga: 20000,
+                gambar: "https://img.icons8.com/color/96/000000/crispy-fried-chicken.png",
+            },
+            {
+                nama: "Seblak Campur Jumbo",
+                harga: 25000,
+                gambar: "https://img.icons8.com/color/96/000000/noodles.png",
+            }
+        ];
+
+        // =======================
+        // PRODUK GALERI RENDER
+        // =======================
+        function renderProdukGaleri() {
+            const galeri = document.getElementById('produkGaleri');
+            galeri.innerHTML = '';
+            produkList.forEach((p, idx) => {
+                galeri.innerHTML += `
+                    <div class="produk-card animate" data-idx="${idx}">
+                        <img src="${p.gambar}" alt="${p.nama}">
+                        <h4>${p.nama}</h4>
+                        <div class="harga">Rp${p.harga.toLocaleString('id-ID')}</div>
+                        <button onclick="addToCart(${idx})">Tambah ke Keranjang</button>
+                    </div>
+                `;
+            });
+        }
+        renderProdukGaleri();
+
+        // =======================
+        // KERANJANG BELANJA
+        // =======================
+        let keranjang = [];
+        function addToCart(idx) {
+            // Cek apakah produk sudah ada di keranjang
+            const found = keranjang.find(item => item.idx === idx);
+            if (found) {
+                found.jumlah += 1;
+            } else {
+                keranjang.push({ idx, jumlah: 1 });
+            }
+            renderKeranjang();
+            animateCart();
+        }
+        function renderKeranjang() {
+            const list = document.getElementById('keranjangList');
+            const total = document.getElementById('keranjangTotal');
+            list.innerHTML = '';
+            let sum = 0;
+            keranjang.forEach(item => {
+                const p = produkList[item.idx];
+                sum += p.harga * item.jumlah;
+                list.innerHTML += `
+                    <li>
+                        <span>${p.nama} x ${item.jumlah}</span>
+                        <span>Rp${(p.harga * item.jumlah).toLocaleString('id-ID')}</span>
+                    </li>
+                `;
+            });
+            total.textContent = 'Total: Rp' + sum.toLocaleString('id-ID');
+        }
+        function clearCart() {
+            keranjang = [];
+            renderKeranjang();
+        }
+        function animateCart() {
+            // Animasi sederhana saat menambah ke keranjang
+            const keranjangSection = document.getElementById('keranjang');
+            keranjangSection.classList.remove('animate');
+            setTimeout(() => keranjangSection.classList.add('animate'), 10);
+        }
+        renderKeranjang();
+
+        // =======================
+        // FORM ORDER
+        // =======================
+        // Isi select produk di form order
+        const produkOrderSelect = document.getElementById('produkOrder');
+        produkList.forEach((p, idx) => {
+            produkOrderSelect.innerHTML += `<option value="${idx}">${p.nama} - Rp${p.harga.toLocaleString('id-ID')}</option>`;
+        });
+
+        // Handle submit form order
+        document.getElementById('orderForm').addEventListener('submit', function(e){
+            e.preventDefault();
+            const nama = document.getElementById('nama').value;
+            const alamat = document.getElementById('alamat').value;
+            const produkIdx = document.getElementById('produkOrder').value;
+            const jumlah = document.getElementById('jumlah').value;
+            const produk = produkList[produkIdx];
+            // Simulasi kirim ke WhatsApp
+            const pesan = `Halo Hot by F&I! Saya mau order:\nNama: ${nama}\nAlamat: ${alamat}\nProduk: ${produk.nama}\nJumlah: ${jumlah}\nTotal: Rp${(produk.harga*jumlah).toLocaleString('id-ID')}`;
+            window.open(`https://wa.me/6281246693401?text=${encodeURIComponent(pesan)}`, '_blank');
+        });
+
+        // =======================
+        // DARK MODE TOGGLE
+        // =======================
+        const darkBtn = document.querySelector('.toggle-dark');
+        const darkIcon = document.getElementById('dark-icon');
+        function setDarkMode(on) {
+            document.documentElement.setAttribute('data-theme', on ? 'dark' : '');
+            darkIcon.textContent = on ? '☀️' : '🌙';
+            localStorage.setItem('hotbyfi-dark', on ? '1' : '0');
+        }
+        darkBtn.onclick = function() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            setDarkMode(!isDark);
+        };
+        // Load dark mode dari localStorage
+        if (localStorage.getItem('hotbyfi-dark') === '1') setDarkMode(true);
+
+        // =======================
+        // NAVBAR RESPONSIVE
+        // =======================
+        function toggleMenu() {
+            const nav = document.querySelector('.navbar nav');
+            nav.classList.toggle('open');
+        }
+        // Tutup menu jika klik di luar nav (mobile)
+        document.addEventListener('click', function(e){
+            const nav = document.querySelector('.navbar nav');
+            const hamburger = document.querySelector('.navbar .hamburger');
+            if (window.innerWidth <= 600 && nav.classList.contains('open')) {
+                if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+                    nav.classList.remove('open');
+                }
+            }
+        });
+
+        // Highlight menu aktif saat scroll
+        const navLinks = document.querySelectorAll('.navbar nav a');
+        window.addEventListener('scroll', function(){
+            let fromTop = window.scrollY + 80;
+            navLinks.forEach(link => {
+                const section = document.querySelector(link.getAttribute('href'));
+                if (section && section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // =======================
+        // ANIMASI SCROLL
+        // =======================
+        // Tambahkan class 'visible' saat section masuk viewport
+        function onScrollAnimate() {
+            document.querySelectorAll('.animate').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 80) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+        window.addEventListener('scroll', onScrollAnimate);
+        window.addEventListener('load', onScrollAnimate);
+
+        // =======================
+        // CHAT DUMMY
+        // =======================
+        const chatdummyToggle = document.getElementById('chatdummyToggle');
+        const chatdummyWindow = document.getElementById('chatdummyWindow');
+        chatdummyToggle.onclick = function() {
+            chatdummyWindow.style.display = chatdummyWindow.style.display === 'flex' ? 'none' : 'flex';
+        };
+        // Tutup chat jika klik di luar
+        document.addEventListener('click', function(e){
+            if (!document.getElementById('chatdummy').contains(e.target) && chatdummyWindow.style.display === 'flex') {
+                chatdummyWindow.style.display = 'none';
+            }
+        });
+        // Jawaban preset chatdummy
+        const chatdummyMessages = document.getElementById('chatdummyMessages');
+        function chatdummyAsk(idx) {
+            const questions = [
+                "Apa produk terlaris?",
+                "Apakah bisa COD?",
+                "Berapa level pedasnya?"
+            ];
+            const answers = [
+                "Produk terlaris kami: Kerupuk Rafael & Seblak Campur! Keduanya favorit pelanggan 🔥",
+                "Tentu, bisa COD untuk area tertentu. Silakan chat admin ya! 😉",
+                "Level pedas mulai dari 1-5. Bisa request sesuai selera, dari 'nyengat' sampai 'meledak'! 🌶️"
+            ];
+            chatdummyMessages.innerHTML = `<b>Anda:</b> ${questions[idx]}<br><b>HotBot:</b> ${answers[idx]}`;
+        }
+
+        // =======================
+        // KOMENTAR PENTING
+        // =======================
+        // - Semua animasi hover dan scroll diatur di CSS dan JS
+        // - Keranjang belanja & form order di-handle dengan JS sederhana
+        // - Chatdummy hanya simulasi, tidak real chat
+        // - Dark mode toggle simpan preferensi di localStorage
+        // - Navbar responsif dengan hamburger menu
+        // - Semua style dalam <style> agar mudah belajar & modifikasi
+    </script>
+</body>
+</html></div>
+<script>
+// ====== CEKOUT DI KERANJANG ======
+function checkoutCart() {
+    if (keranjang.length === 0) {
+        alert('Keranjang masih kosong!');
+        return;
+    }
+    let pesan = 'Halo Hot by F&I! Saya mau order:\n';
+    keranjang.forEach(item => {
+        const p = produkList[item.idx];
+        pesan += `- ${p.nama} x ${item.jumlah} = Rp${(p.harga * item.jumlah).toLocaleString('id-ID')}\n`;
+    });
+    const total = keranjang.reduce((sum, item) => sum + produkList[item.idx].harga * item.jumlah, 0);
+    pesan += `Total: Rp${total.toLocaleString('id-ID')}`;
+    window.open(`https://wa.me/6281246693401?text=${encodeURIComponent(pesan)}`, '_blank');
+}
+
+// Tambahkan tombol cekout di keranjang
+const keranjangSection = document.getElementById('keranjang');
+const checkoutBtn = document.createElement('button');
+checkoutBtn.textContent = 'Checkout via WhatsApp';
+checkoutBtn.className = 'keranjang-btn-clear';
+checkoutBtn.style.background = '#25d366';
+checkoutBtn.style.color = '#fff';
+checkoutBtn.style.marginRight = '0.5rem';
+checkoutBtn.onclick = checkoutCart;
+keranjangSection.appendChild(checkoutBtn);
+
+// ====== CEKOUT DI FOTO PRODUK ======
+function checkoutSingle(idx) {
+    const p = produkList[idx];
+    const pesan = `Halo Hot by F&I! Saya mau order:\n- ${p.nama} x 1 = Rp${p.harga.toLocaleString('id-ID')}\nTotal: Rp${p.harga.toLocaleString('id-ID')}`;
+    window.open(`https://wa.me/6281246693401?text=${encodeURIComponent(pesan)}`, '_blank');
+}
+
+// Tambahkan tombol cekout di setiap produk setelah render
+function addCheckoutToProdukCards() {
+    document.querySelectorAll('.produk-card').forEach(card => {
+        const idx = card.getAttribute('data-idx');
+        if (!card.querySelector('.produk-checkout-btn')) {
+            const btn = document.createElement('button');
+            btn.textContent = 'Checkout';
+            btn.className = 'produk-checkout-btn';
+            btn.style.background = '#25d366';
+            btn.style.color = '#fff';
+            btn.style.marginLeft = '0.5rem';
+            btn.onclick = function(e) {
+                e.stopPropagation();
+                checkoutSingle(idx);
+            };
+            card.querySelector('button').after(btn);
+        }
+    });
+}
+renderProdukGaleri = (function(orig){
+    return function() {
+        orig();
+        addCheckoutToProdukCards();
+    }
+})(renderProdukGaleri);
+renderProdukGaleri();
+/*
+ * Ganti logo Instagram dan WhatsApp di footer dengan SVG agar lebih modern.
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    // Instagram SVG
+    const igSVG = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect width="24" height="24" rx="7" fill="#fff"/><path d="M12 7.2A4.8 4.8 0 1 0 12 16.8a4.8 4.8 0 0 0 0-9.6zm0 7.8a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm5.1-8.1a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0z" fill="#E1306C"/><rect x="3" y="3" width="18" height="18" rx="5" stroke="#E1306C" stroke-width="2"/></svg>`;
+    // WhatsApp SVG
+    const waSVG = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect width="24" height="24" rx="7" fill="#25D366"/><path d="M12 5.2A6.8 6.8 0 0 0 5.2 12c0 1.2.3 2.3.8 3.3l-1 3.5 3.6-1c1 .5 2.1.8 3.4.8A6.8 6.8 0 0 0 12 5.2zm3.9 10.1c-.2.6-1.1 1.1-1.5 1.2-.4.1-.9.2-1.5.1-.3 0-.7-.1-1.2-.3a8.2 8.2 0 0 1-2.7-1.7 6.5 6.5 0 0 1-1.6-2.6c-.2-.5-.2-.9-.2-1.2 0-.3.1-.6.2-.8.1-.2.2-.3.3-.4.1-.1.2-.2.3-.2.1 0 .2 0 .3.1l1 .5c.1.1.2.2.2.3.1.2.1.4 0 .5l-.2.4c-.1.1-.1.2 0 .3.2.4.6.9 1.1 1.3.5.4 1 .7 1.4.8.1 0 .2 0 .3-.1l.4-.2c.2-.1.4-.1.5 0l.7 1c.1.1.1.2.1.3z" fill="#fff"/></svg>`;
+
+    // Ganti Instagram
+    const igLink = document.querySelector('.footer-social a[title="Instagram"]');
+    if (igLink) igLink.innerHTML = igSVG;
+
+    // Ganti WhatsApp
+    const waLink = document.querySelector('.footer-social a[title="WhatsApp"]');
+    if (waLink) waLink.innerHTML = waSVG;
+});
+/*
+ * Ubah warna tombol toggle dark mode agar lebih terlihat.
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleDark = document.querySelector('.toggle-dark');
+    if (toggleDark) {
+        toggleDark.style.background = 'var(--yellow)';
+        toggleDark.style.color = 'var(--red)';
+        toggleDark.style.borderRadius = '50%';
+        toggleDark.style.boxShadow = '0 2px 8px var(--dark-red)';
+        toggleDark.onmouseenter = function() {
+            toggleDark.style.background = 'var(--red)';
+            toggleDark.style.color = 'var(--yellow)';
+        };
+        toggleDark.onmouseleave = function() {
+            toggleDark.style.background = 'var(--yellow)';
+            toggleDark.style.color = 'var(--red)';
+        };
+    }
+});
+
+</script>
